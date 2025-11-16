@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { SiGithub, SiX } from "@icons-pack/react-simple-icons";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -24,6 +25,13 @@ export default function RootLayout({
           <div className="
           absolute inset-0 h-full w-full bg-grid bg-size-[14px_24px] pointer-events-none
           [mask-image:radial-gradient(ellipse_at_bottom,transparent_25%,black)]"></div>
+          <header className="w-full flex justify-between text-sm px-8 py-8">
+            <p className="tracking-wide">MiraUI</p>
+            <span className="flex gap-8"> 
+              <button><SiGithub size={20}></SiGithub></button>
+              <button><SiX size={20}></SiX></button>
+            </span> 
+          </header>
         {children}
       </body>
     </html>
