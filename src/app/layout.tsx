@@ -23,7 +23,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} antialiased min-h-screen w-full bg-background text-foreground`}>
           <div className="
-          absolute inset-0 h-full w-full bg-grid bg-size-[14px_24px] pointer-events-none
+          absolute inset-0 h-full w-full bg-grid bg-size-[14px_24px] pointer-events-none -z-10
           [mask-image:radial-gradient(ellipse_at_bottom,transparent_25%,black)]"></div>
           <header className="w-full flex justify-between text-sm px-8 py-8">
             <p className="tracking-wide">MiraUI</p>

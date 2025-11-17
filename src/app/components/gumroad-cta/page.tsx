@@ -6,7 +6,7 @@ export default function GumroadCta({
     return(
         <div>
             <GumroadButton>
-                <p>Hover Me!</p>
+                <p>Hover Me Please!</p>
             </GumroadButton>
         </div>
     )
