@@ -39,8 +39,8 @@ export default function Sidenav(){
             category: 'Cards',
             items: [
                 {
-                    name: 'Perspective Shift',
-                    href: '/components/perspective-shift'
+                    name: 'Card Stack',
+                    href: '/components/card-stack'
                 },
                 {
                     name: 'Expanding Image',
