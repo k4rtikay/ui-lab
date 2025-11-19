@@ -58,6 +58,10 @@ export default function Sidenav(){
                 {
                     name: 'Squeeze Effect',
                     href: '/components/squeeze-text'
+                },
+                {
+                    name: 'Text along a Path',
+                    href: '/components/path-text'
                 }
             ]
         },
@@ -90,7 +94,7 @@ export default function Sidenav(){
                                             <li key={item.name} className={clsx(
                                                 "opacity-60 hover:opacity-100",
                                                 {
-                                                    "text-[#E4E986] opacity-100" : pathname === item.href
+                                                    "text-[#DB2B39] opacity-100" : pathname === item.href
                                                 },
                                             )}><Link href={item.href}>{item.name}</Link></li>
                                         )
