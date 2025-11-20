@@ -21,7 +21,7 @@ export default function PathTextPage({
             <div className={clsx(classes, "w-full") }>
                 <PathTextScrollable text={"let's work together"} variant={"wave"} className="relative"/>
             </div>
-            <p>This component is a text animated on an svg path, inspired by the chivi chivi website that i have taken inspiration from please copy this and use it as you see free.</p>
+            <p>This component is a text animated on an svg path, inspired by the chivi chivi website that i have taken inspiration from please copy this and use it as you see free. You may use Lenis scroll for a smoother scroll experience.</p>
         </div>
     )
 }

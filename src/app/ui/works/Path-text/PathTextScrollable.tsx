@@ -63,14 +63,16 @@ export default function PathTextScrollable({text,variant,speed=5,className}:Path
 
     return (
         <div  ref={container} className={clsx("overflow-y-auto h-[600px] w-full", className, defaultClass)}>
-            <div className="h-screen"></div>
+            <div className="h-screen flex justify-center items-center">
+                <p>Scroll to see the text.</p>
+            </div>
             <footer>
                 <svg viewBox={viewBox}>
                     <path id={pathId} fill="none" d={path}/>
                     <text className="text-[8px] uppercase  tracking-wide">
                         {
                             [...Array(actualCopies)].map((_,i)=>{
-                                return (<textPath href={"#"+pathId} key={i} startOffset={i * actualSpacing + "%"} method="stretch" ref={(ref) => {texts.current[i] = ref}}>
+                                return (<textPath href={"#"+pathId} key={i} startOffset={i * actualSpacing + "%"} method="stretch" fill="red" ref={(ref) => {texts.current[i] = ref}}>
                                     {text}
                                 </textPath>);
                             })

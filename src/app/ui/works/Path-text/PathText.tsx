@@ -48,7 +48,7 @@ export default function PathText({text,variant,speed=5, spacing, copies,classNam
                 <text className="text-[8px] uppercase  tracking-wide">
                     {
                         [...Array(actualCopies)].map((_,i)=>{
-                            return (<textPath href={"#"+pathId} key={i} startOffset={i * actualSpacing + "%"} method="stretch">
+                            return (<textPath href={"#"+pathId} key={i} startOffset={i * actualSpacing + "%"} method="stretch" fill="red">
                                 {text}
                                 <animate
                                 attributeName="startOffset"
