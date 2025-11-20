@@ -21,18 +21,29 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} antialiased min-h-screen w-full bg-background text-foreground`}>
-          <div className="
-          absolute inset-0 h-full w-full bg-grid bg-size-[14px_24px] pointer-events-none -z-10
-          [mask-image:radial-gradient(ellipse_at_bottom,transparent_25%,black)]"></div>
+      className={`${inter.variable} antialiased h-screen overflow-hidden w-full bg-background text-foreground`}>
+
+        <div className="flex flex-col h-full">
+          
           <header className="w-full flex justify-between text-sm px-8 py-8">
             <p className="tracking-wide">MiraUI</p>
-            <span className="flex gap-8"> 
+            <span className="flex gap-8">
               <button><SiGithub size={20}></SiGithub></button>
               <button><SiX size={20}></SiX></button>
-            </span> 
+            </span>
           </header>
-        {children}
+
+          <div className="overflow-hidden flex-1">
+            {children}
+          </div>
+
+          <div className="
+          absolute inset-0 w-full bg-grid bg-size-[14px_24px] pointer-events-none -z-10
+          [mask-image:radial-gradient(ellipse_at_bottom,transparent_25%,black)]">
+          </div>
+
+        </div>
+
       </body>
     </html>
   );

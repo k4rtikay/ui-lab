@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
-export default function Sidenav(){
+export default function Sidenav({...props}){
 
     const pathname = usePathname()
 
@@ -75,13 +75,13 @@ export default function Sidenav(){
                 {
                     name: 'Scroll Progress',
                     href: '/components/scroll-progress'
-                }
+                },
             ]
         }
     ]
 
     return(
-        <aside className="w-64 overflow-y-auto px-8 py-8 text-sm">   
+        <aside className="w-64 px-8 py-8 h-full text-sm overflow-y-auto">   
                 <ul className="flex flex-col gap-8">
                     {
                         comps.map((comp)=>{

@@ -7,9 +7,9 @@ export default function Components({
 
     return(
 
-        <div className="flex h-screen">
+        <div className="flex h-full">
             <Sidenav></Sidenav>
-            <main className="flex-1 overflow-y-auto px-8 py-8">
+            <main className="flex-1 h-full overflow-y-auto px-8 py-8">
                 {children}
             </main>
         </div>
