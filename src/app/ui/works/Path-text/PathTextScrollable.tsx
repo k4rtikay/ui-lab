@@ -4,7 +4,7 @@ import { useEffect, useId, useRef } from "react";
 import clsx from "clsx";
 import { useScroll } from "motion/react";
 
-type PathVariant = "wave" | "circle";
+type PathVariant = "wave" | "arch";
 
 interface PathTextProps{
     text: string;
@@ -26,11 +26,11 @@ export default function PathTextScrollable({text,variant,speed=5,className}:Path
             defaultSpacing: 40,
             defaultCopies: 4,
         },
-        circle: {
-            path: "M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0",
-            viewBox: "0 0 100 100",
-            defaultClass: "w-64 h-64 mx-auto",
-            defaultSpacing:50,
+        arch: {
+            path: "M 25 140 A 125 125 0 0 1 275 140",
+            viewBox: "0 0 300 150",
+            defaultClass: "w-full mx-auto",
+            defaultSpacing: 30,
             defaultCopies: 4
         } 
     };
@@ -77,7 +77,7 @@ export default function PathTextScrollable({text,variant,speed=5,className}:Path
                         }
                     </text>
                 </svg>
-                <div className="h-[250px]"></div>
+                <div className="h-[150px] w-ful"></div>
             </footer>
         </div>
     )
