@@ -1,7 +1,8 @@
 "use client";
 
-import { useId } from "react";
+import { useEffect, useId, useRef } from "react";
 import clsx from "clsx";
+import { useScroll } from "motion/react";
 
 type PathVariant = "wave" | "circle";
 
@@ -39,8 +40,29 @@ export default function PathTextScrollable({text,variant,speed=5,className}:Path
     const actualSpacing = defaultSpacing;
     const actualCopies = defaultCopies;
 
+    const container = useRef<HTMLDivElement>(null);
+    const texts = useRef<(SVGTextPathElement | null)[]>([]);
+
+    const { scrollYProgress } = useScroll({
+        container: container,
+        offset: ['start end', 'end end']
+    })
+
+    useEffect(()=>{
+        const unsubscribe =
+        scrollYProgress.on('change', e => {
+            texts.current.forEach((text,i) => {
+                text?.setAttribute("startOffset", -actualSpacing + (i*actualSpacing) + (e*actualSpacing) + "%");
+            });
+        })
+        
+        return () => unsubscribe()
+    },[scrollYProgress, actualSpacing])
+
+    
+
     return (
-        <div className={clsx("overflow-y-auto h-[500px]", className, defaultClass)}>
+        <div  ref={container} className={clsx("overflow-y-auto h-[600px] w-full", className, defaultClass)}>
             <div className="h-screen"></div>
             <footer>
                 <svg viewBox={viewBox}>
@@ -48,13 +70,14 @@ export default function PathTextScrollable({text,variant,speed=5,className}:Path
                     <text className="text-[8px] uppercase  tracking-wide">
                         {
                             [...Array(actualCopies)].map((_,i)=>{
-                                return (<textPath href={"#"+pathId} key={i} startOffset={i * actualSpacing + "%"} method="stretch">
+                                return (<textPath href={"#"+pathId} key={i} startOffset={i * actualSpacing + "%"} method="stretch" ref={(ref) => {texts.current[i] = ref}}>
                                     {text}
                                 </textPath>);
                             })
                         }
                     </text>
                 </svg>
+                <div className="h-[250px]"></div>
             </footer>
         </div>
     )
