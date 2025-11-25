@@ -26,33 +26,7 @@ export default function CardStack({
     const totalCards  = items.length;
 
 
-    const TOP_CARD_STYLE = { 
-        scale: 1, 
-        y: 0, 
-        zIndex: 30,
-        opacity: 1 
-    };
-  
-    const SECOND_CARD_STYLE = { 
-        scale: 0.9, 
-        y: 20,
-        zIndex: 20, 
-        opacity: 1 
-    };
-    
-    const THIRD_CARD_STYLE = { 
-        scale: 0.8, 
-        y: 40, 
-        zIndex: 10,
-        opacity: 1 
-    };
-    
-    const HIDDEN_STYLE = { 
-        scale: 0.8, 
-        y: -60, 
-        zIndex: 0, 
-        opacity: 0 
-    };
+    const prevIndex = (activeIndex - 1 + totalCards) % totalCards;
 
 
     const  handleClick = () =>{
@@ -60,30 +34,71 @@ export default function CardStack({
             return (prevIndex+1)%totalCards ;
         })
     }
+
+    const variants = {
+        'top':{
+            scale:'1',
+            y: 0, 
+            zIndex: 30,
+            opacity: 1 
+        },
+        'second':{
+            scale: 0.9, 
+            y: 20,
+            zIndex: 20, 
+            opacity: 1
+        },
+        'third':{
+            scale: 0.8, 
+            y: 40, 
+            zIndex: 10,
+            opacity: 1
+        },
+        'hidden':{
+            scale: 0.8, 
+            y: -60, 
+            zIndex: 0, 
+            opacity: 0,
+        },
+        'exit':{
+            y: -240,
+            opacity: 0,
+            zIndex: 50,
+            filter: "blur(4px)",
+            transition:{ duration:0.4 },
+        }
+    }
  
     return(
         <div className="relative">
             {
                 items.map((item, index)=>{
-                    let style;
+                    let anim;
 
                     if(index === activeIndex){
-                        style=TOP_CARD_STYLE;
+                        anim='top';
+                    }
+                    else if(index === prevIndex){
+                        anim='exit'
                     }
                     else if(index === (activeIndex+1)%totalCards){
-                        style=SECOND_CARD_STYLE;
+                        anim='second'
                     }
                     else if(index === (activeIndex+2)%totalCards){
-                        style=THIRD_CARD_STYLE;
+                        anim = 'third'
                     }else{
-                        style="opacity-0";
+                        anim = 'hidden'
                         console.log(activeIndex)
                     }
 
                     return(
                         <motion.div key={item.id}
-                        animate={style}
-                        className="h-fit max-w-lg px-4 py-4 flex flex-col gap-2 absolute inset-0 rounded-2xl bg-white dark:bg-zinc-900 text-foreground shadow-[0px_10px_25px_rgba(0,0,0,0.1)] dark:shadow-none dark:border dark:border-zinc-800"
+                        variants={variants}
+                        initial={anim}
+                        animate={anim}
+                        transition={{type:"spring", damping:15 }}
+                        whileTap={{y:'8px'}}
+                        className="h-fit max-w-lg px-4 py-6 flex flex-col gap-2 absolute inset-0 rounded-2xl bg-white dark:bg-[#181818] text-foreground shadow-[0px_10px_25px_rgba(0,0,0,0.1)] dark:shadow-none dark:border dark:border-zinc-800"
                         onClick={handleClick}>
                             <h1 className="text-xl font-medium">{item.title}</h1>
                             <p className="text-sm opacity-70 tracking-wide">{item.description}</p>
