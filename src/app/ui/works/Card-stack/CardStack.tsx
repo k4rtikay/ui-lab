@@ -23,13 +23,17 @@ export default function CardStack({
 }:CardStackProps){
 
     const [activeIndex, setActiveIndex] = useState<number>(0);
-    const totalCards  = items.length;
+    const [hasClicked, setHasClicked] = useState<boolean>(false);
+    const totalCards:number  = items.length;
 
 
-    const prevIndex = (activeIndex - 1 + totalCards) % totalCards;
+    const lastIndex:number = (activeIndex - 1 + totalCards) % totalCards;
 
 
     const  handleClick = () =>{
+
+        setHasClicked(true)
+
         setActiveIndex((prevIndex)=>{
             return (prevIndex+1)%totalCards ;
         })
@@ -66,6 +70,12 @@ export default function CardStack({
             zIndex: 50,
             filter: "blur(4px)",
             transition:{ duration:0.4 },
+        },
+        transitionEnd: {
+            y: 0,
+            opacity: 0,
+            zIndex: 0,
+            filter: 'blur(0px)'
         }
     }
  
@@ -78,7 +88,7 @@ export default function CardStack({
                     if(index === activeIndex){
                         anim='top';
                     }
-                    else if(index === prevIndex){
+                    else if(index === lastIndex && hasClicked){
                         anim='exit'
                     }
                     else if(index === (activeIndex+1)%totalCards){
