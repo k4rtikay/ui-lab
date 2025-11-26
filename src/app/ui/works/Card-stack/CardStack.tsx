@@ -108,7 +108,7 @@ export default function CardStack({
                         animate={anim}
                         transition={{type:"spring", damping:15 }}
                         whileTap={{y:'8px'}}
-                        className="h-fit max-w-lg px-4 py-6 flex flex-col gap-2 absolute inset-0 rounded-2xl bg-white dark:bg-[#181818] text-foreground shadow-[0px_10px_25px_rgba(0,0,0,0.1)] dark:shadow-none dark:border dark:border-zinc-800"
+                        className={clsx("h-fit max-w-lg px-4 py-6 flex flex-col gap-2 absolute inset-0 rounded-2xl bg-white dark:bg-[#181818] text-foreground shadow-[0px_10px_25px_rgba(0,0,0,0.1)] dark:shadow-none dark:border dark:border-zinc-800",{ "pointer-events-none":(index!==activeIndex) })}
                         onClick={handleClick}>
                             <h1 className="text-xl font-medium">{item.title}</h1>
                             <p className="text-sm opacity-70 tracking-wide">{item.description}</p>
