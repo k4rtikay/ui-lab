@@ -25,7 +25,7 @@ export default function ExpandingPillPage({
     ]
     
     return(
-        <div>
+        <div className="flex justify-center">
            <ExpandingPill links={icons} text="Contact Us"></ExpandingPill>
         </div>
     )
