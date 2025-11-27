@@ -41,7 +41,7 @@ export default function CardStack({
 
     const variants = {
         'top':{
-            scale:'1',
+            scale:1,
             y: 0, 
             zIndex: 30,
             opacity: 1 
@@ -104,7 +104,7 @@ export default function CardStack({
                     return(
                         <motion.div key={item.id}
                         variants={variants}
-                        initial={anim}
+                        initial={anim}  
                         animate={anim}
                         transition={{type:"spring", damping:15 }}
                         whileTap={{y:'8px'}}

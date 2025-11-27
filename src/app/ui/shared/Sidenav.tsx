@@ -32,6 +32,10 @@ export default function Sidenav({...props}){
                 {
                     name: 'Glowing Border',
                     href: '/components/glowing-border'
+                },
+                {
+                    name: 'Expanding Pill',
+                    href: '/components/expanding-pill'
                 }
             ]
         },
