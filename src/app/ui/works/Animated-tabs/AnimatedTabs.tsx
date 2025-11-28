@@ -12,9 +12,10 @@ type Tab = {
 interface AnimatedTabsProps {
     tabs: Tab[];
     className?: string
+    onChange?: (id: string) => void;
 }
 
-export default function AnimatedTabs({tabs,className} : AnimatedTabsProps){
+export default function AnimatedTabs({tabs,className, onChange} : AnimatedTabsProps){
     const [selected, setSelected] = useState<string>(tabs[0].id);
     const [hovered, setHovered] = useState<string>(tabs[0].id);
 
@@ -29,7 +30,9 @@ export default function AnimatedTabs({tabs,className} : AnimatedTabsProps){
                     return (
                     <button key={tab.id}
                     className={"relative px-2 py-1"}
-                    onClick={()=>{setSelected(tab.id)}}
+                    onClick={()=>{
+                    setSelected(tab.id)
+                    onChange?.(tab.id)}}
                     onMouseOver={()=>{setHovered(tab.id)}}
                     >
                         {
