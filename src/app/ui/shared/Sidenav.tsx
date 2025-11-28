@@ -80,6 +80,10 @@ export default function Sidenav({...props}){
                     name: 'Scroll Progress',
                     href: '/components/scroll-progress'
                 },
+                {
+                    name: 'Animated Tabs',
+                    href: '/components/animated-tabs'
+                },
             ]
         }
     ]
