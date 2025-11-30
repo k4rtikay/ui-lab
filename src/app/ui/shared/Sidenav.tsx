@@ -30,8 +30,8 @@ export default function Sidenav({...props}){
                     href: '/components/gumroad-cta'
                 },
                 {
-                    name: 'Glowing Border',
-                    href: '/components/glowing-border'
+                    name: 'Shimmer Button',
+                    href: '/components/shimmer-button'
                 },
                 {
                     name: 'Expanding Pill',
