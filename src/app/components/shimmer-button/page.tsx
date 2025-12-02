@@ -5,18 +5,17 @@ export default function ShimmerButtonPage({
     children,
 }:{children: React.ReactNode}){   
 
-    const CATEGORY_TABS = [
-        { id: "write", label: "Write" },
-        { id: "design", label: "Design" },
-        { id: "code", label: "Code" },
-        { id: "ship", label: "Ship" },
-    ];
-
     return(
         <div className="flex justify-center">
-            <ShimmerButton className="flex gap-8">
-                <p className="text-neutral-800 dark:text-neutral-50">Book an Appointment</p>
-                <RightIcon ></RightIcon>
+            <ShimmerButton className="flex px-2 gap-8 items-center group">
+                <div className="flex flex-col gap-0.5 items-start">
+                    <p className="text-neutral-100 tracking-wide">Book an Appointment</p>
+                    <div className="flex items-center gap-1">
+                        <span className="w-2 h-2 rounded-full bg-radial from-green-200 to-green-500 animate-pulse shadow-[0_0_15px_green]"></span>
+                        <p className="text-xs tracking-wide text-neutral-100/60">Open</p>
+                    </div>
+                </div>
+                <RightIcon className="group-hover:translate-x-1 group-hover:text-neutral-100 duration-150 ease-out text-neutral-100/60"></RightIcon>
             </ShimmerButton>
         </div>
     )
