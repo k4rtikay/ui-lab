@@ -11,7 +11,7 @@ export default function ShimmerButtonPage({
                 <div className="flex flex-col gap-0.5 items-start">
                     <p className="text-neutral-100 tracking-wide">Book an Appointment</p>
                     <div className="flex items-center gap-1">
-                        <span className="w-2 h-2 rounded-full bg-radial from-green-200 to-green-500 animate-pulse shadow-[0_0_15px_green]"></span>
+                        <span className="w-2 h-2 rounded-full bg-radial from-green-200 to-green-500 animate-pulse group-hover:animate-none shadow-[0_0_15px_green]"></span>
                         <p className="text-xs tracking-wide text-neutral-100/60">Open</p>
                     </div>
                 </div>
