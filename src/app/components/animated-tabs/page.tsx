@@ -1,4 +1,4 @@
-import AnimatedTabs from "@/app/ui/works/Animated-tabs/AnimatedTabs"
+import AnimatedTabs from "@/components/works/Animated-tabs/AnimatedTabs"
 
 export default function AnimatedTabsPage({
     children,

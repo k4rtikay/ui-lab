@@ -1,5 +1,5 @@
 import React from "react";
-import CardStack from "@/app/ui/works/Card-stack/CardStack";
+import CardStack from "@/components/works/Card-stack/CardStack";
 
 export default function CardStackPage({
     children,

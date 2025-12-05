@@ -1,4 +1,4 @@
-import ShimmerButton from "@/app/ui/works/Shimmer-Button/ShimmerButton";
+import ShimmerButton from "@/components/works/Shimmer-Button/ShimmerButton";
 import { ChevronRightCircleIcon as RightIcon } from 'lucide-react';
 
 export default function ShimmerButtonPage({

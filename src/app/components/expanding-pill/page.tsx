@@ -1,4 +1,4 @@
-import ExpandingPill from "@/app/ui/works/Expanding-pill/ExpandingPill"
+import ExpandingPill from "@/components/works/Expanding-pill/ExpandingPill"
 import { SiX, SiGithub, SiInstagram, SiGmail } from "@icons-pack/react-simple-icons"
 
 export default function ExpandingPillPage({

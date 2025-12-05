@@ -1,5 +1,5 @@
 import React from "react";
-import Sidenav from "../ui/shared/Sidenav";
+import Sidenav from "../../components/shared/Sidenav";
 
 export default function Components({
     children,

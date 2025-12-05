@@ -1,4 +1,4 @@
-import GumroadButton from "@/app/ui/works/Gumroad-cta/GumroadButton"
+import GumroadButton from "@/components/works/Gumroad-cta/GumroadButton"
 
 export default function GumroadCta({
     children,

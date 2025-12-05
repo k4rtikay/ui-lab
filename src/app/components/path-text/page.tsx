@@ -1,7 +1,7 @@
 
 import React from "react";
-import PathText from "@/app/ui/works/Path-text/PathText";
-import PathTextScrollable from "@/app/ui/works/Path-text/PathTextScrollable";
+import PathText from "@/components/works/Path-text/PathText";
+import PathTextScrollable from "@/components/works/Path-text/PathTextScrollable";
 import clsx from "clsx";
 
 export default function PathTextPage({
