@@ -84,6 +84,10 @@ export default function Sidenav({...props}){
                     name: 'Animated Tabs',
                     href: '/components/animated-tabs'
                 },
+                {
+                    name: 'OTP Input',
+                    href: '/components/otp-input'
+                },
             ]
         }
     ]
