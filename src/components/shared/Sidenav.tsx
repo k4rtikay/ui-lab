@@ -36,6 +36,10 @@ export default function Sidenav({...props}){
                 {
                     name: 'Expanding Pill',
                     href: '/components/expanding-pill'
+                },
+                {
+                    name: 'Theme Button',
+                    href: '/components/theme-button'
                 }
             ]
         },
