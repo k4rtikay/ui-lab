@@ -53,6 +53,10 @@ export default function Sidenav({...props}){
                 {
                     name: 'Expanding Image',
                     href: '/components/expanding-image'
+                },
+                {
+                    name: 'Lenticular Card',
+                    href: '/components/lenticular-card'
                 }
             ]
         },
