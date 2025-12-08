@@ -7,11 +7,10 @@ export default function LenticularCard() {
     const boundingRef = useRef<DOMRect | null>(null);
 
     return (
-        <div className="flex justify-center">
+        <div className="flex justify-center perspective-midrange">
             <div
                 onMouseEnter={(e) => {
                     boundingRef.current = e.currentTarget.getBoundingClientRect();
-                    console.log(boundingRef.current)
                 }}
                 onMouseMove={(e) => {
                     if (!boundingRef.current) return;
@@ -25,7 +24,7 @@ export default function LenticularCard() {
                     e.currentTarget.style.setProperty("--x-rotation", `${xRotation}deg`);
                     e.currentTarget.style.setProperty("--y-rotation", `${yRotation}deg`);
                 }}
-                className="flex flex-col shadow-lg justify-center width-xl h-[280px] border border-red-200 bg-red-50 px-4 py-4 rounded-md text-zinc-900 perspective-midrange hover:rotate-x-(--x-rotation) hover:rotate-y-(--y-rotation) hover:scale-110"
+                className="flex flex-col shadow-lg justify-center width-xl h-[280px] border border-red-200 bg-red-50 p-4 rounded-md text-zinc-900 hover:rotate-x-(--y-rotation) hover:rotate-y-(--x-rotation) hover:scale-110 transition-transform ease-out"
 
             >
                 <h1>Lenticular Card</h1>
