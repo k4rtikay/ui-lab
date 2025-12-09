@@ -1,8 +1,14 @@
 "use client";
 
-import { useRef } from "react";
+import React, { useRef } from "react";
+import clsx from "clsx";
 
-export default function LenticularCard() {
+interface LenticularcardProps{
+    children?: React.ReactNode;
+    className?: string;
+}
+
+export default function LenticularCard({children, className} : LenticularcardProps) {
 
     const boundingRef = useRef<DOMRect | null>(null);
 
@@ -29,13 +35,12 @@ export default function LenticularCard() {
                 e.currentTarget.style.setProperty("--y-rotation", "0deg");
             }}
 
-            className="flex justify-center p-px w-fit perspective-midrange"
+            className={clsx("flex justify-center p-px w-fit perspective-midrange",className)}
         >
             <div
                 className="flex flex-col shadow-lg justify-center width-xl h-[280px] border border-red-200 bg-red-50 p-4 rounded-md text-zinc-900 rotate-x-(--y-rotation) rotate-y-(--x-rotation) hover:scale-110 transition-transform ease-out transform-3d"
             >
-                <h1>Lenticular Card</h1>
-                <p>Come on - try hovering on it.</p>
+                {children}   
             </div>
         </div>
     )

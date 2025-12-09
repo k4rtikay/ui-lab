@@ -6,7 +6,10 @@ export default function LenticularCardPage({
 
     return(
         <div className="flex justify-center">
-            <LenticularCard></LenticularCard>
+            <LenticularCard>
+                <h1>Lenticular Card</h1>
+                <p>Come on - try hovering on it.</p>
+            </LenticularCard>
         </div>
     )
 }
