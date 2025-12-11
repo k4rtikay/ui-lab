@@ -7,26 +7,27 @@ export default function ExpandingPillPage({
     
     const icons = [
         {
-            icon: <SiX size={24}></SiX>,
+            icon: <SiX size={18}></SiX>,
             href: ""
         },
         {
-            icon: <SiInstagram size={24}></SiInstagram>,
+            icon: <SiInstagram size={18}></SiInstagram>,
             href: ""
         },
         {
-            icon: <SiGithub size={24}></SiGithub>,
+            icon: <SiGithub size={18}></SiGithub>,
             href: ""
         },
         {
-            icon: <SiGmail size={24}></SiGmail>,
+            icon: <SiGmail size={18}></SiGmail>,
             href: ""
         }
     ]
     
     return(
         <div className="flex justify-center">
-           <ExpandingPill links={icons} text="Contact Us"></ExpandingPill>
+           <ExpandingPill links={icons} text="Contact"
+           className="w-40 h-10 bg-neutral-800 text-neutral-100 font-semibold tracking-wide px-8 py-4 rounded-md"></ExpandingPill>
         </div>
     )
 }

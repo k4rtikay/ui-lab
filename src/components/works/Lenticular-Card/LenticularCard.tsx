@@ -35,7 +35,7 @@ export default function LenticularCard({children, className, layers} : Lenticula
                 
                 // Layer 3 (Right): 0 at center, 1 at end
                 const op3 = Math.max(0, (xPosPercent - 0.5) * 2);
-
+                
                 // 2. Set Variables
                 e.currentTarget.style.setProperty("--op-0", `${op1}`);
                 e.currentTarget.style.setProperty("--op-1", `${op2}`);

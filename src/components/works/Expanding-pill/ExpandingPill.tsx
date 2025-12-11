@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, stagger, easeInOut } from "motion/react";
 
 type SocialLinks = {
     icon: React.ReactNode;
@@ -18,51 +18,133 @@ interface ExpandingPillProps{
 
 
 export default function ExpandingPill({
-    text="Contact us",
+    text="Contact",
     links,
     className
 }:ExpandingPillProps){
 
-    const [isHovered, setIsHovered] = useState<Boolean>(false);
+    const [isHovered, setIsHovered] = useState<boolean>(false);
+    const characters:string[] = text.split("");
 
     return(
         <motion.div
-        className="flex justify-center items-center bg-neutral-700 text-neutral-100 font-medium tracking-wide"
+        className={clsx("flex justify-center gap-4 items-center",className)}
         onMouseEnter={()=>{setIsHovered(true)}}
         onMouseLeave={()=>{setIsHovered(false)}}
-        layout
         transition={{type:"spring", stiffness:300, damping: 25}}
-        style={{borderRadius:"999px"}}
         >
-            <AnimatePresence mode="popLayout">
+            <AnimatePresence mode="wait">
                 {!isHovered ?(
                     <motion.div
                     key={"text"}
-                    layout
-                    initial={{opacity:0, y:20}}
-                    animate={{opacity:1, y:0}}
-                    exit={{opacity:0, y:-20}}
-                    className="px-4 py-2">{text}</motion.div>
+                    variants={containerVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    >
+                        {
+                            characters.map((char,index)=>{
+                                return (
+                                    <motion.span
+                                    key={index}
+                                    variants={letterVariants}
+                                    aria-label={`${text} button`}
+                                    className="inline-block"
+                                    >
+                                        {char}
+                                    </motion.span>
+                                )
+                            })
+                        }
+                    </motion.div>
                 ):(
                     <motion.div
-                    className="flex justify-between items-center gap-6 px-6 py-6"
-                    key={"icons"}
-                    initial={{opacity:0, y:-20}}
-                    animate={{opacity:1, y:0}}
-                    exit={{opacity:0, y:20}}>{
-                        links.map((link, index)=>{
-                            return <motion.a
-                            whileHover={{opacity:0.6, scale:1.05}}
-                            key={index}
-                            aria-label={link.label || "Social Link"}
-                            target="_blank"
-                            rel="noreferrer noopener">{link.icon}</motion.a>;
-                        })
-                    }</motion.div>
+                    key="links"
+                    className="flex gap-4"
+                    variants={linksContainerVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    >
+                        {
+                            links.map((link, index)=>{
+                                return <motion.a
+                                variants={linkVariants}
+                                whileHover={{opacity:0.6}}
+                                key={index}
+                                aria-label={link.label || "Social Link"}
+                                target="_blank"
+                                rel="noreferrer noopener">{link.icon}</motion.a>;
+                            })
+                        }
+                    </motion.div>
                 )}
             </AnimatePresence>
                
         </motion.div>
     )
 
+}
+
+
+const containerVariants = {
+    initial: {},
+    animate: {
+        transition: {
+            ease: [0.76,0,0.24,1] as const,
+            delayChildren: stagger(0.025),
+        },
+    },
+    exit: {
+        transition: {
+            ease: [0.76,0,0.24,1] as const,
+            delayChildren: stagger(0.035, {from: "last"}),
+        },
+    },
+}
+
+const linksContainerVariants = {
+    initial: {},
+    animate: {
+        transition: {
+            ease: [0.76,0,0.24,1] as const,
+            delayChildren: stagger(0.1),
+        },
+    },
+    exit: {
+        transition: {
+            ease: [0.76,0,0.24,1] as const,
+            delayChildren: stagger(0.1, {from: "last"}),
+        },
+    },
+}
+
+const linkVariants = {
+    initial: {
+        opacity: 0,
+        y: 10,
+    },
+    animate: {
+        opacity: 1,
+        y: 0,
+    },
+    exit: {
+        opacity: 0,
+        y: 10,
+    },
+}
+
+const letterVariants = {
+    initial: {
+        opacity: 0,
+        y: -10,
+    },
+    animate: {
+        opacity: 1,
+        y: 0,
+    },
+    exit: {
+        opacity: 0,
+        y: -10,
+    },
 }
