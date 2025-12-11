@@ -51,7 +51,7 @@ export default function ExpandingPill({
                                     aria-label={`${text} button`}
                                     className="inline-block"
                                     >
-                                        {char}
+                                        {char === " " ? "\u00A0" : char}
                                     </motion.span>
                                 )
                             })
