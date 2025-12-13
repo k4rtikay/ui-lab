@@ -99,7 +99,7 @@ export default function ExpandingPill({
                                     aria-label={link.label || "Social Link"}
                                     target="_blank"
                                     rel="noreferrer noopener"
-                                    className="outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
+                                    className="shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
                                     onClick={(e) => e.stopPropagation()}
                                 // href={link.href}
                                 >{link.icon}</motion.a>;
