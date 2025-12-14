@@ -8,24 +8,38 @@ export default function LenticularCardPage({
     const layers: React.ReactNode[] = [
         <Image
             alt="image of a cyberpunk cityscape during the morning hours"
-            src={"/cyberpunk-sky-morning.png"}
-            width={360}
-            height={240}
+            src={"/hummingbird-top.png"}
+            fill={true}
+            style={{objectFit:"cover"}}
         />,
 
-        <Image
-            alt="image of a cyberpunk cityscape during the noon hours"
-            src={"/cyberpunk-sky-noon.png"}
-            width={360}
-            height={240}
-        />,
+        // <Image
+        //     alt="image of a cyberpunk cityscape during the noon hours"
+        //     src={"/hummingbird-mid.png"}
+        //     width={360}
+        //     height={240}
+        // />,
+
+        // <Image
+        //     alt="image of a cyberpunk cityscape during the noon hours"
+        //     src={"/hummingbird-mid-bottom.png"}
+        //     width={360}
+        //     height={240}
+        // />,
 
         <Image
             alt="image of a cyberpunk cityscape during the night hours"
-            src={"/cyberpunk-sky-night.png"}
-            width={360}
-            height={240}
-        />
+            src={"/hummingbird-bottom.png"}
+            fill={true}
+            style={{objectFit:"cover"}}
+        />,
+
+        <Image
+            alt="image of a cyberpunk cityscape during the morning hours"
+            src={"/hummingbird-top.png"}
+            fill={true}
+            style={{objectFit:"cover"}}
+        />,
 
     ]
 
