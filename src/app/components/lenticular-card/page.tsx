@@ -31,14 +31,11 @@ export default function LenticularCardPage({
 
     return (
         <div className="flex justify-center">
-            <LenticularCard layers={layers}>
-                <div className="rounded-md shadow-lg overflow-hidden">
-
-                    <div className="px-4 flex flex-col gap-2">
-                        <h1>Lenticular Card</h1>
-                        <p>Come on - try hovering on it.</p>
-                        <p>The images change as you tilt it side to side.</p>
-                    </div>
+            <LenticularCard layers={layers} className="rounded-md shadow-lg overflow-hidden">
+                <div className="px-4 flex flex-col gap-2">
+                    <h1>Lenticular Card</h1>
+                    <p>Come on - try hovering on it.</p>
+                    <p>The images change as you tilt it side to side.</p>
                 </div>
             </LenticularCard>
         </div>

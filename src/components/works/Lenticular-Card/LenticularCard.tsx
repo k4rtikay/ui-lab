@@ -36,7 +36,6 @@ export default function LenticularCard({children, className, layers} : Lenticula
                 // Layer 3 (Right): 0 at center, 1 at end
                 const op3 = Math.max(0, (xPosPercent - 0.5) * 2);
                 
-                // 2. Set Variables
                 e.currentTarget.style.setProperty("--op-0", `${op1}`);
                 e.currentTarget.style.setProperty("--op-1", `${op2}`);
                 e.currentTarget.style.setProperty("--op-2", `${op3}`);
@@ -53,12 +52,12 @@ export default function LenticularCard({children, className, layers} : Lenticula
                 e.currentTarget.style.setProperty("--op-2", "0");
             }}
 
-            className={clsx("p-px perspective-midrange",className)}
+            className={clsx("p-px perspective-midrange")}
         >
             <div
-                className="relative rotate-x-(--y-rotation) rotate-y-(--x-rotation) hover:scale-105 transition-transform ease-out transform-3d"
+                className={clsx("relative flex flex-col rotate-x-(--y-rotation) rotate-y-(--x-rotation) hover:scale-105 transition-transform ease-out transform-3d", className)}
             >
-                <div>
+                <div className="relative w-full h-64 overflow-hidden">
                     {
                         layers.map((item, id)=>{
                             return (
@@ -73,7 +72,7 @@ export default function LenticularCard({children, className, layers} : Lenticula
                 </div>
 
                 <div
-                className="relative h-full flex items-end -z-10"
+                className="relative flex items-end -z-10"
                 >
                     {children}
                 </div>
