@@ -3,13 +3,14 @@
 import React, { useRef } from "react";
 import clsx from "clsx";
 
-interface LenticularcardProps{
+interface LenticularCardProps{
     children?: React.ReactNode;
     className?: string;
     layers: React.ReactNode[];
+    rotationSpeed?: number;
 }
 
-export default function LenticularCard({children, className, layers} : LenticularcardProps) {
+export default function LenticularCard({children, className, layers, rotationSpeed=30} : LenticularCardProps) {
 
     const boundingRef = useRef<DOMRect | null>(null);
 
@@ -24,21 +25,25 @@ export default function LenticularCard({children, className, layers} : Lenticula
                 const yPos = e.clientY - boundingRef.current.top;
                 const xPosPercent = xPos / boundingRef.current.width;
                 const yPosPercent = yPos / boundingRef.current.height;
-                const xRotation = (xPosPercent - 0.5) * 30;
-                const yRotation = (0.5 - yPosPercent) * 30;
+                const xRotation = (xPosPercent - 0.5) * rotationSpeed;
+                const yRotation = (0.5 - yPosPercent) * rotationSpeed;
 
-                // Layer 1 (Left): 1 at start, 0 at center
-                const op1 = Math.max(0, 1 - (xPosPercent * 2));
+                const n = layers.length;
+                const step = 1 / (n - 1);
                 
-                // Layer 2 (Center): 0 at edges, 1 at center
-                const op2 = 1 - Math.abs(xPosPercent - 0.5) * 2;
-                
-                // Layer 3 (Right): 0 at center, 1 at end
-                const op3 = Math.max(0, (xPosPercent - 0.5) * 2);
-                
-                e.currentTarget.style.setProperty("--op-0", `${op1}`);
-                e.currentTarget.style.setProperty("--op-1", `${op2}`);
-                e.currentTarget.style.setProperty("--op-2", `${op3}`);
+                for (let i = 0; i < n; i++) {
+                    if (n === 1) {
+                        e.currentTarget.style.setProperty("--op-0", "1");
+                        return;
+                    }
+
+                    const center = i * step;
+                    // Calculating distance from this layer's "peak" center
+                    const distance = Math.abs(xPosPercent - center);
+                    // Normalizing distance by step size and invert
+                    const op = Math.max(0, 1 - (distance / step));
+                    e.currentTarget.style.setProperty(`--op-${i}`, `${op}`);
+                }
 
                 e.currentTarget.style.setProperty("--x-rotation", `${xRotation}deg`);
                 e.currentTarget.style.setProperty("--y-rotation", `${yRotation}deg`);
@@ -47,9 +52,9 @@ export default function LenticularCard({children, className, layers} : Lenticula
                 boundingRef.current = null;
                 e.currentTarget.style.setProperty("--x-rotation", "0deg");
                 e.currentTarget.style.setProperty("--y-rotation", "0deg");
-                e.currentTarget.style.setProperty("--op-0", "0");
-                e.currentTarget.style.setProperty("--op-1", "1");
-                e.currentTarget.style.setProperty("--op-2", "0");
+                layers.forEach((_, id)=>{
+                    e.currentTarget.style.setProperty(`--op-${id}`, id===0 ? "1" : "0");
+                });
             }}
 
             className={clsx("p-px perspective-midrange")}

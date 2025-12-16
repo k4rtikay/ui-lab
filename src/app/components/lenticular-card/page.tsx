@@ -13,30 +13,23 @@ export default function LenticularCardPage({
             style={{objectFit:"cover"}}
         />,
 
-        // <Image
-        //     alt="image of a cyberpunk cityscape during the noon hours"
-        //     src={"/hummingbird-mid.png"}
-        //     width={360}
-        //     height={240}
-        // />,
-
-        // <Image
-        //     alt="image of a cyberpunk cityscape during the noon hours"
-        //     src={"/hummingbird-mid-bottom.png"}
-        //     width={360}
-        //     height={240}
-        // />,
-
         <Image
-            alt="image of a cyberpunk cityscape during the night hours"
-            src={"/hummingbird-bottom.png"}
+            alt="image of a cyberpunk cityscape during the noon hours"
+            src={"/hummingbird-mid.png"}
             fill={true}
             style={{objectFit:"cover"}}
         />,
 
         <Image
-            alt="image of a cyberpunk cityscape during the morning hours"
-            src={"/hummingbird-top.png"}
+            alt="image of a cyberpunk cityscape during the noon hours"
+            src={"/hummingbird-mid-bottom.png"}
+            fill={true}
+            style={{objectFit:"cover"}}
+        />,
+
+        <Image
+            alt="image of a cyberpunk cityscape during the night hours"
+            src={"/hummingbird-bottom.png"}
             fill={true}
             style={{objectFit:"cover"}}
         />,
