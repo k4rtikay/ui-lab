@@ -47,6 +47,7 @@ export default function LenticularCard({children, className, layers, rotationSpe
 
                 e.currentTarget.style.setProperty("--x-rotation", `${xRotation}deg`);
                 e.currentTarget.style.setProperty("--y-rotation", `${yRotation}deg`);
+                e.currentTarget.style.setProperty("--x-pos", `${xPosPercent}`);
             }}
             onMouseLeave={(e)=>{
                 boundingRef.current = null;
@@ -62,7 +63,7 @@ export default function LenticularCard({children, className, layers, rotationSpe
             <div
                 className={clsx("relative flex flex-col rotate-x-(--y-rotation) rotate-y-(--x-rotation) hover:scale-105 transition-transform ease-out transform-3d", className)}
             >
-                <div className="relative w-full h-64 overflow-hidden">
+                <div className="relative bg-black/35 w-full h-64 overflow-hidden">
                     {
                         layers.map((item, id)=>{
                             return (
@@ -81,6 +82,14 @@ export default function LenticularCard({children, className, layers, rotationSpe
                 >
                     {children}
                 </div>
+
+                <div className="pointer-events-none absolute inset-0"
+                style={{
+                    background: "linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.9) 40%, rgba(255,255,255,0.0) 60%, transparent 100%)",
+                    backgroundSize: "200% 100%",
+                    backgroundPosition: "var(--x-percent) 0"
+                }}
+                ></div>
 
             </div>
         </div>
