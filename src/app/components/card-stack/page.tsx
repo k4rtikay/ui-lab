@@ -50,7 +50,7 @@ export default function CardStackPage({
             <CardStack className="h-40 w-72 md:w-96">
                 {
                     items.map((item)=>(
-                        <div key={item.id} className="flex flex-col justify-center gap-2 h-full w-full px-4 rounded-2xl shadow-[0_4px_4px_rgba(0,0,0,0.05),0_8px_12px_rgba(0,0,0,0.025),inset_0_2px_4px_rgba(0,0,0,0.03)] bg-white dark:bg-[#121212] dark:border dark:border-zinc-800 ">
+                        <div key={item.id} className="flex flex-col justify-center gap-2 h-full w-full px-4 rounded-2xl shadow-[0_4px_4px_rgba(0,0,0,0.05),0_8px_12px_rgba(0,0,0,0.025),inset_0_2px_4px_rgba(0,0,0,0.03)] dark:shadow-none bg-white dark:bg-[#121212] dark:border dark:border-zinc-800 ">
                             <h2 className="text-lg font-semibold">{item.title}</h2>
                             <div className="flex flex-col gap-4">
                                 <p className="text-sm text-gray-600 dark:text-gray-400">{item.description}</p>
