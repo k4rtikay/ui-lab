@@ -1,11 +1,12 @@
 import React from "react";
 import CardStack from "@/components/works/Card-stack/CardStack";
+import clsx from "clsx";
 
 export default function CardStackPage({
     children,
 }:{children: React.ReactNode}){
 
-    const MOCK_CARDS = [
+    const items = [
         {
             id: 1,
             title: "Typography Guidelines",
@@ -37,7 +38,7 @@ export default function CardStackPage({
         {
             id: 5,
             title: "Dark Mode Contrast",
-            description: "Verify that all gray text colors pass WCAG AA standards when in dark mode.",
+            description: "Verify that all gray text colors pass WCAG AA standards when in dark mode of the website.",
             category: "Accessibility",
             color: "bg-red-100 text-red-800",
         },
@@ -45,8 +46,20 @@ export default function CardStackPage({
 
 
     return(
-        <div>
-            <CardStack items={MOCK_CARDS}></CardStack>
+        <div className="flex justify-center">
+            <CardStack className="h-40 w-72 md:w-96">
+                {
+                    items.map((item)=>(
+                        <div key={item.id} className="flex flex-col justify-center gap-2 h-full w-full px-4 rounded-2xl shadow-[0_4px_4px_rgba(0,0,0,0.05),0_8px_12px_rgba(0,0,0,0.025),inset_0_2px_4px_rgba(0,0,0,0.03)] bg-white dark:bg-[#121212] dark:border dark:border-zinc-800 ">
+                            <h2 className="text-lg font-semibold">{item.title}</h2>
+                            <div className="flex flex-col gap-4">
+                                <p className="text-sm text-gray-600 dark:text-gray-400">{item.description}</p>
+                                <span className={clsx("px-2 py-1 w-fit text-sm rounded-md",item.color)}>{item.category}</span>
+                            </div>  
+                        </div>
+                    ))
+                }
+            </CardStack>
         </div>
     )
 }

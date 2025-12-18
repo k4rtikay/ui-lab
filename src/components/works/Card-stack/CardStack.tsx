@@ -1,30 +1,32 @@
 "use client";
 
 import clsx from "clsx";
-import React, { useState } from "react";
+import React, { Children, useState } from "react";
 import { motion } from "motion/react";
 
-type cardData = {
-  id: number | string;
-  title: string;
-  description: string;
-  category: string;
-  color: string;
-};
+// type cardData = {
+//   id: number | string;
+//   title: string;
+//   description: string;
+//   category: string;
+//   color: string;
+// };
 
-interface CardStackProps extends React.ButtonHTMLAttributes<HTMLDivElement> {
-    items: cardData[];
+interface CardStackProps extends React.HTMLAttributes<HTMLDivElement> {
+    children: React.ReactNode;
+    className?: string;
 };
 
 export default function CardStack({
-    items,
+    children,
     className,
     ...props
 }:CardStackProps){
 
+    const cards = Children.toArray(children);
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const [hasClicked, setHasClicked] = useState<boolean>(false);
-    const totalCards:number  = items.length;
+    const totalCards:number  = cards.length;
 
 
     const lastIndex:number = (activeIndex - 1 + totalCards) % totalCards;
@@ -69,7 +71,7 @@ export default function CardStack({
             opacity: 0,
             zIndex: 50,
             filter: "blur(4px)",
-            transition:{ duration:0.4 },
+            transition:{ duration:0.35 },
         },
         transitionEnd: {
             y: 0,
@@ -80,9 +82,9 @@ export default function CardStack({
     }
  
     return(
-        <div className="relative">
+        <div className={clsx("relative ", className)} {...props}>
             {
-                items.map((item, index)=>{
+                cards.map((item, index)=>{
                     let anim;
 
                     if(index === activeIndex){
@@ -102,17 +104,15 @@ export default function CardStack({
                     }
 
                     return(
-                        <motion.div key={item.id}
+                        <motion.div key={index}
                         variants={variants}
                         initial={anim}  
                         animate={anim}
                         transition={{type:"spring", damping:15 }}
                         whileTap={{y:'8px'}}
-                        className={clsx("h-fit max-w-lg px-4 py-6 flex flex-col gap-2 absolute inset-0 rounded-2xl bg-white dark:bg-[#181818] text-foreground shadow-[0px_10px_25px_rgba(0,0,0,0.1)] dark:shadow-none dark:border dark:border-zinc-800",{ "pointer-events-none":(index!==activeIndex) })}
+                        className={clsx("w-fit absolute inset-0",{ "pointer-events-none":(index!==activeIndex) })}
                         onClick={handleClick}>
-                            <h1 className="text-xl font-medium">{item.title}</h1>
-                            <p className="text-sm opacity-70 tracking-wide">{item.description}</p>
-                            <span className={clsx("px-2 py-1 w-fit text-sm rounded-lg",item.color)}>{item.category}</span>
+                            {item}
                         </motion.div>
                     )
                 })
