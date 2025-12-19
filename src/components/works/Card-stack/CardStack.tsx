@@ -23,6 +23,8 @@ export default function CardStack({
 
     const totalCards: number = cards.length;
 
+    if (totalCards === 0) return null;
+
 
     const lastIndex: number = (activeIndex - 1 + totalCards) % totalCards;
 
@@ -84,12 +86,13 @@ export default function CardStack({
         }
     }
 
-    useEffect(()=>{
-        if(isKeyRef.current){
+    useEffect(() => {
+        if (isKeyRef.current) {
             const currentCard = cardsRef.current[activeIndex];
             currentCard?.focus()
         }
-    },[activeIndex])
+    }, [activeIndex])
+
 
     return (
         <div className={cn("relative ", className)} {...props}>
@@ -112,24 +115,26 @@ export default function CardStack({
                         anim = 'third'
                     } else {
                         anim = 'hidden'
-                        console.log(activeIndex)
                     }
 
                     return (
                         <motion.div key={index}
-                            ref={(i:HTMLDivElement|null)=>{
-                                if(i)  cardsRef.current[index] = i;
+                            ref={(i: HTMLDivElement | null) => {
+                                if (i) cardsRef.current[index] = i;
                             }}
                             variants={variants}
                             initial={anim}
                             animate={anim}
-                            transition={{ type: "spring", damping: 20, stiffness: 200 }}
+                            transition={{ type: "spring", damping: 21, stiffness: 180 }}
                             whileTap={{ y: '8px' }}
-                            className={cn("w-fit absolute inset-0 outline-none",
-                                    {"pointer-events-none":!isTop},
-                                    "focus-visible:ring-2 focus-visible:ring-blue-400"
-                                )}
-                            onClick={handleNext}
+                            className={cn("w-fit absolute inset-0 outline-none group",
+                                { "pointer-events-none": !isTop },
+                                "cursor-pointer select-none"
+                            )}
+                            onClick={() => {
+                                isKeyRef.current = false;
+                                handleNext();
+                            }}
 
                             tabIndex={isTop ? 0 : -1}
                             onKeyDown={handleKeyDown}
