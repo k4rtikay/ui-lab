@@ -123,7 +123,7 @@ export default function CardStack({
                             variants={variants}
                             initial={anim}
                             animate={anim}
-                            transition={{ type: "spring", damping: 15 }}
+                            transition={{ type: "spring", damping: 20, stiffness: 200 }}
                             whileTap={{ y: '8px' }}
                             className={cn("w-fit absolute inset-0 outline-none",
                                     {"pointer-events-none":!isTop},
