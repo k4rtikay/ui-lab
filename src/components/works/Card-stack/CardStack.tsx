@@ -72,11 +72,11 @@ export default function CardStack({
             opacity: 0,
         },
         'exit': {
-            y: -240,
+            y: -150,
             opacity: 0,
             zIndex: 50,
             filter: "blur(4px)",
-            transition: { duration: 0.35 },
+            transition: { duration: 0.2 },
         },
         transitionEnd: {
             y: 0,
@@ -127,7 +127,7 @@ export default function CardStack({
                             animate={anim}
                             transition={{ type: "spring", damping: 21, stiffness: 180 }}
                             whileTap={{ y: '6px' }}
-                            className={cn("w-fit absolute inset-0 outline-none group",
+                            className={cn("absolute inset-0 outline-none group",
                                 { "pointer-events-none": !isTop },
                                 "cursor-pointer select-none"
                             )}
