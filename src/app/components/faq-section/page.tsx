@@ -1,6 +1,9 @@
+"use client";
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Instrument_Serif } from "next/font/google";
 import { Button } from "@/components/ui/button";
+import { motion } from "motion/react";
 
 const sample_faqs = [
     {
@@ -67,12 +70,12 @@ export default function FaqSection({
     ctaButtonText = "Reach Out"
 }: FaqSectionProps) {
     return (
-        <div className="w-full flex justify-between px-8 bg-zinc-50 dark:bg-zinc-900 border border-gray-200 dark:border-gray-800 overflow-hidden">
-            <div className="w-1/3 flex flex-col border-l border-gray-200 dark:border-gray-800">
+        <div className="w-full flex justify-between px-8 bg-zinc-50 dark:bg-[#1D1D21] border border-gray-200 dark:border-[#313136] overflow-hidden">
+            <div className="w-1/3 flex flex-col border-l border-gray-200 dark:border-[#313136]">
                 <div className="p-4 flex flex-col gap-4">
                     <div>
                         <h2 className={`text-3xl tracking-wide ${instrumentSerif.className}`}>{title}</h2>
-                        <p className="text-sm">{subtitle}</p>
+                        <p className="text-sm opacity-80">{subtitle}</p>
                     </div>
                     {
                         showCta &&
@@ -81,7 +84,7 @@ export default function FaqSection({
                             <p className="text-sm opacity-60">{ctaText}</p>
                             <Button
                                 size={"sm"}
-                                className="p-2 rounded-none"
+                                className="p-2 rounded-none w-fit shadow-none"
                                 asChild
                             >
                                 <a href={ctaHref}>{ctaButtonText}</a>
@@ -90,35 +93,17 @@ export default function FaqSection({
                     }
                 </div>
 
-                <div className="flex-1 w-full relative overflow-hidden bg-zinc-100/50 dark:bg-zinc-900/50">
-                    <svg className="absolute inset-0 w-full h-full text-zinc-300 dark:text-zinc-800" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            {/* A Graph Paper Pattern */}
-                            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                            </pattern>
-                        </defs>
-
-                        {/* Fill background with grid */}
-                        <rect width="100%" height="100%" fill="url(#grid)" />
-
-                        {/* A decorative "Schematic Circle" in the center */}
-                        <circle cx="50%" cy="50%" r="40" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 2" />
-                        <circle cx="50%" cy="50%" r="20" fill="none" stroke="currentColor" strokeWidth="1" />
-
-                        {/* Decorative Lines */}
-                        <line x1="0" y1="50%" x2="100%" y2="50%" stroke="currentColor" strokeWidth="0.5" />
-                        <line x1="50%" y1="0" x2="50%" y2="100%" stroke="currentColor" strokeWidth="0.5" />
-                    </svg>
+                <div className="flex-1 w-full relative overflow-hidden min-h-[200px]">
+                    <SvgIllustration />
                 </div>
 
             </div>
 
-            <div className="w-2/3 py-8 h-full border-x border-gray-200 dark:border-gray-800">
+            <div className="w-2/3 py-8 h-full border-x border-gray-200 dark:border-[#313136]">
                 <Accordion
                     type="single"
                     collapsible
-                    className="border-y border-gray-200 dark:border-gray-800"
+                    className="border-y border-gray-200 dark:border-[#313136]"
                     defaultValue="item-1"
                 >
                     {
@@ -126,7 +111,7 @@ export default function FaqSection({
                             <AccordionItem value={`item-${index + 1}`} key={index}
                                 className="px-4"
                             >
-                                <AccordionTrigger className="font-semibold tracking-wide">
+                                <AccordionTrigger className="font-medium tracking-wider">
                                     {faq.question}
                                 </AccordionTrigger>
                                 <AccordionContent className="flex flex-col gap-4 text-balance opacity-60 tracking-wide">
@@ -139,4 +124,208 @@ export default function FaqSection({
             </div>
         </div>
     )
-}   
+}
+
+function SvgIllustration() {
+    return (
+        <svg className="absolute inset-0 w-full h-full text-zinc-400 dark:text-zinc-500" xmlns="http://www.w3.org/2000/svg">
+            
+
+            {/* Background grid */}
+            <rect width="100%" height="100%" fill="url(#faq-grid)" />
+            <defs>
+                {/* Grid Pattern */}
+                <pattern id="faq-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+                    <path d="M 24 0 L 0 0 0 24" fill="none" stroke="currentColor" strokeWidth="0.3" opacity="0.5" />
+                </pattern>
+
+                {/* Radial gradient for glow effect */}
+                <radialGradient id="faq-glow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="currentColor" stopOpacity="0.15" />
+                    <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+                </radialGradient>
+            </defs>
+
+            {/* Central glow with pulse */}
+            <motion.circle
+                cx="50%"
+                cy="50%"
+                r="80"
+                fill="url(#faq-glow)"
+                animate={{ opacity: [0.3, 0.8, 0.3], scale: [1, 1.05, 1] }}
+                transition={{ duration: 3, ease: "easeInOut", repeat: Infinity }}
+                style={{ transformOrigin: "center" }}
+            />
+
+            {/* Animated rotating circles */}
+            <motion.g
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, ease: "linear", repeat: Infinity }}
+                style={{ transformOrigin: "50% 50%" }}
+            >
+                <circle cx="50%" cy="50%" r="70" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="8 4" opacity="0.4" />
+            </motion.g>
+
+            <motion.g
+                animate={{ rotate: -360 }}
+                transition={{ duration: 12, ease: "linear", repeat: Infinity }}
+                style={{ transformOrigin: "50% 50%" }}
+            >
+                <circle cx="50%" cy="50%" r="50" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="12 6" opacity="0.6" />
+            </motion.g>
+
+            <motion.g
+                animate={{ rotate: 360 }}
+                transition={{ duration: 8, ease: "linear", repeat: Infinity }}
+                style={{ transformOrigin: "50% 50%" }}
+            >
+                <circle cx="50%" cy="50%" r="30" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 8" opacity="0.8" />
+            </motion.g>
+
+            {/* Center dot with pulse */}
+            <motion.circle
+                cx="50%"
+                cy="50%"
+                r="4"
+                fill="currentColor"
+                animate={{ opacity: [0.3, 0.8, 0.3] }}
+                transition={{ duration: 3, ease: "easeInOut", repeat: Infinity }}
+                style={{ transformOrigin: "center" }}
+            />
+            <motion.circle
+                cx="50%"
+                cy="50%"
+                r="8"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1"
+                opacity="0.5"
+                animate={{ opacity: [0.2, 0.5, 0.2] }}
+                transition={{ duration: 3, ease: "easeInOut", repeat: Infinity }}
+                style={{ transformOrigin: "center" }}
+            />
+
+            {/* Animated flowing lines - horizontal */}
+            <motion.line
+                x1="0"
+                y1="50%"
+                x2="35%"
+                y2="50%"
+                stroke="currentColor"
+                strokeWidth="0.5"
+                strokeDasharray="8 8"
+                opacity="0.5"
+                animate={{ strokeDashoffset: [0, -48] }}
+                transition={{ duration: 2, ease: "linear", repeat: Infinity }}
+            />
+            <motion.line
+                x1="65%"
+                y1="50%"
+                x2="100%"
+                y2="50%"
+                stroke="currentColor"
+                strokeWidth="0.5"
+                strokeDasharray="8 8"
+                opacity="0.5"
+                animate={{ strokeDashoffset: [0, -48] }}
+                transition={{ duration: 2, ease: "linear", repeat: Infinity }}
+            />
+
+            {/* Animated flowing lines - vertical */}
+            <motion.line
+                x1="50%"
+                y1="0"
+                x2="50%"
+                y2="35%"
+                stroke="currentColor"
+                strokeWidth="0.5"
+                strokeDasharray="8 8"
+                opacity="0.5"
+                animate={{ strokeDashoffset: [0, -48] }}
+                transition={{ duration: 2, ease: "linear", repeat: Infinity }}
+            />
+            <motion.line
+                x1="50%"
+                y1="65%"
+                x2="50%"
+                y2="100%"
+                stroke="currentColor"
+                strokeWidth="0.5"
+                strokeDasharray="8 8"
+                opacity="0.5"
+                animate={{ strokeDashoffset: [0, -48] }}
+                transition={{ duration: 2, ease: "linear", repeat: Infinity }}
+            />
+
+            {/* Floating indicator dots */}
+            <motion.g
+                animate={{ y: [0, -8, 0], opacity: [0.6, 1, 0.6] }}
+                transition={{ duration: 4, ease: "easeInOut", repeat: Infinity }}
+            >
+                <circle cx="25%" cy="30%" r="3" fill="currentColor" />
+            </motion.g>
+            <motion.g
+                animate={{ y: [0, -8, 0], opacity: [0.6, 1, 0.6] }}
+                transition={{ duration: 4, ease: "easeInOut", repeat: Infinity, delay: 0.5 }}
+            >
+                <circle cx="75%" cy="70%" r="3" fill="currentColor" />
+            </motion.g>
+            <motion.g
+                animate={{ y: [0, -8, 0], opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 4, ease: "easeInOut", repeat: Infinity, delay: 1 }}
+            >
+                <circle cx="70%" cy="25%" r="2" fill="currentColor" />
+            </motion.g>
+
+            {/* Corner accents with blink */}
+            <motion.rect
+                x="10%"
+                y="15%"
+                width="8"
+                height="8"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="0.5"
+                animate={{ opacity: [0.3, 0.9, 0.3] }}
+                transition={{ duration: 2, ease: "easeInOut", repeat: Infinity }}
+            />
+            <motion.rect
+                x="82%"
+                y="75%"
+                width="8"
+                height="8"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="0.5"
+                animate={{ opacity: [0.3, 0.9, 0.3] }}
+                transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, delay: 0.4 }}
+            />
+            <motion.circle
+                cx="15%"
+                cy="80%"
+                r="4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="0.5"
+                animate={{ opacity: [0.3, 0.9, 0.3] }}
+                transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, delay: 0.8 }}
+            />
+
+            {/* Small cross markers */}
+            <motion.g
+                animate={{ opacity: [0.3, 0.9, 0.3] }}
+                transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, delay: 0.4 }}
+            >
+                <line x1="85%" y1="20%" x2="90%" y2="20%" stroke="currentColor" strokeWidth="1" />
+                <line x1="87.5%" y1="17%" x2="87.5%" y2="23%" stroke="currentColor" strokeWidth="1" />
+            </motion.g>
+            <motion.g
+                animate={{ opacity: [0.3, 0.9, 0.3] }}
+                transition={{ duration: 2, ease: "easeInOut", repeat: Infinity }}
+            >
+                <line x1="10%" y1="60%" x2="15%" y2="60%" stroke="currentColor" strokeWidth="1" />
+                <line x1="12.5%" y1="57%" x2="12.5%" y2="63%" stroke="currentColor" strokeWidth="1" />
+            </motion.g>
+        </svg>
+    )
+}
