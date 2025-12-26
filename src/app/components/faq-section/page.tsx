@@ -70,8 +70,8 @@ export default function FaqSection({
     ctaButtonText = "Reach Out"
 }: FaqSectionProps) {
     return (
-        <div className="w-full flex justify-between px-8 bg-zinc-50 dark:bg-[#1D1D21] border border-gray-200 dark:border-[#313136] overflow-hidden">
-            <div className="w-1/3 flex flex-col border-l border-gray-200 dark:border-[#313136]">
+        <div className="w-full flex justify-between px-8 bg-zinc-50 dark:bg-[#131315] border border-gray-200 dark:border-[#1D1D21] overflow-hidden">
+            <div className="w-1/3 flex flex-col border-l border-gray-200 dark:border-[#1D1D21]">
                 <div className="p-4 flex flex-col gap-4">
                     <div>
                         <h2 className={`text-3xl tracking-wide ${instrumentSerif.className}`}>{title}</h2>
@@ -99,11 +99,11 @@ export default function FaqSection({
 
             </div>
 
-            <div className="w-2/3 py-8 h-full border-x border-gray-200 dark:border-[#313136]">
+            <div className="w-2/3 py-8 h-full border-x border-gray-200 dark:border-[#1D1D21]">
                 <Accordion
                     type="single"
                     collapsible
-                    className="border-y border-gray-200 dark:border-[#313136]"
+                    className="border-y border-gray-200 dark:border-[#1D1D21]"
                     defaultValue="item-1"
                 >
                     {
@@ -111,7 +111,7 @@ export default function FaqSection({
                             <AccordionItem value={`item-${index + 1}`} key={index}
                                 className="px-4"
                             >
-                                <AccordionTrigger className="font-medium tracking-wider">
+                                <AccordionTrigger className="font-medium tracking-wider hover:no-underline">
                                     {faq.question}
                                 </AccordionTrigger>
                                 <AccordionContent className="flex flex-col gap-4 text-balance opacity-60 tracking-wide">
