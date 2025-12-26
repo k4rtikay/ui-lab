@@ -57,6 +57,10 @@ export default function Sidenav({...props}){
                 {
                     name: 'Lenticular Card',
                     href: '/components/lenticular-card'
+                },
+                {
+                    name: 'FAQ Section',
+                    href: '/components/faq-section'
                 }
             ]
         },
