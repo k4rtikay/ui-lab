@@ -128,7 +128,7 @@ export default function FaqSection({
 
 function SvgIllustration() {
     return (
-        <svg className="absolute inset-0 w-full h-full text-zinc-400 dark:text-zinc-500" xmlns="http://www.w3.org/2000/svg">
+        <svg className="absolute inset-0 w-full h-full text-zinc-400 dark:text-zinc-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
             
 
             {/* Background grid */}
