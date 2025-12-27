@@ -51,10 +51,6 @@ export default function Sidenav({...props}){
                     href: '/components/card-stack'
                 },
                 {
-                    name: 'Expanding Image',
-                    href: '/components/expanding-image'
-                },
-                {
                     name: 'Lenticular Card',
                     href: '/components/lenticular-card'
                 },
@@ -72,14 +68,6 @@ export default function Sidenav({...props}){
             category: 'Text Effects',
             items: [
                 {
-                    name: 'Blur Reveal',
-                    href: '/components/blur-reveal'
-                },
-                {
-                    name: 'Squeeze Effect',
-                    href: '/components/squeeze-text'
-                },
-                {
                     name: 'Text along a Path',
                     href: '/components/path-text'
                 }
@@ -88,14 +76,6 @@ export default function Sidenav({...props}){
         {
             category: 'Interactive',
             items: [
-                {
-                    name: 'Dock',
-                    href: '/components/dock'
-                },
-                {
-                    name: 'Scroll Progress',
-                    href: '/components/scroll-progress'
-                },
                 {
                     name: 'Animated Tabs',
                     href: '/components/animated-tabs'
