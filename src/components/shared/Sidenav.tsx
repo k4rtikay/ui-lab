@@ -61,7 +61,11 @@ export default function Sidenav({...props}){
                 {
                     name: 'FAQ Section',
                     href: '/components/faq-section'
-                }
+                },
+                {
+                    name: 'Vibrant CTA Section',
+                    href: '/components/vibrant-cta-section'
+                },
             ]
         },
         {
