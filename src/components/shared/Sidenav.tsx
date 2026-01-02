@@ -84,6 +84,10 @@ export default function Sidenav({...props}){
                     name: 'OTP Input',
                     href: '/components/otp-input'
                 },
+                {
+                    name: 'Drag and Drop Accordion',
+                    href: '/components/dnd-accordion'
+                }
             ]
         }
     ]
